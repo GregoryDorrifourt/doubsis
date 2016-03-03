@@ -1,23 +1,33 @@
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
+  <h1>Doub' 6</h1>
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
+    Générateur de table aléatoire pour tournois de dominos
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+<div>
+  <form name="nombre" ng-submit="vm.generer()">
+    <legend>Merci de saisir le nombre de joueurs</legend>
+    <div class="form-group">
+      <input type="number" class="form-control" id="" placeholder="Nombre de joueurs" ng-model="vm.nbJoueurs"  name="nbJoueurs" ng-required="true" multiple="vm.nbJoueurs" >
+      <div class="alert alert-warning" role="alert" ng-show="!vm.checkMultiple() && vm.nbJoueurs > 4">
+        <span>Nombre de joueurs non multiple de 4</span>
+      </div>
+    </div>
+  
+    
+  
+    <button type="submit" class="btn btn-primary" ng-show="vm.checkMultiple()">Générer</button>
+  </form>
+  
+  
+</div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div>
+  <div ng-repeat="table in vm.tables" class="table-joueurs col-sm-3">
+    <h2>{{'Table '+($index+1) }}</h2>
+    <ul>
+      <li ng-repeat="joueur in table">{{joueur}}</li>
+    </ul>
+  </div>
 </div>

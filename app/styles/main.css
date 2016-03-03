@@ -59,6 +59,10 @@ body {
   margin-top: 28px;
 }
 
+.table-joueurs:hover{
+  background-color:#F3F3F3
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
