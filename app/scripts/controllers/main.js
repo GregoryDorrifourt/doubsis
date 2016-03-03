@@ -11,6 +11,7 @@ angular.module('doubsisApp')
   .controller('MainCtrl', function () {
     var that = this;
     that.nbJoueurs = 44;
+    that.nbTours = 10;
     that.checkMultiple = function(){
       return that.nbJoueurs % 4 === 0 && that.nbJoueurs>0;
     };
@@ -18,19 +19,24 @@ angular.module('doubsisApp')
     that.generer = function(){
       if(that.checkMultiple()){
           that.nbTables = that.nbJoueurs/4;
-          that.tableau = [];
-          for(var i=0;i<that.nbJoueurs;i++){
-            that.tableau.push(i+1);
-          }
-          that.tableau = shuffleArray(that.tableau);
+          that.tours = [];
+          for(var t=0; t<that.nbTours;t++){
 
-          that.tables = [];
-          for(var j=0;j<that.tableau.length;j++){
-            var ct = Math.floor(j/4);
-            if(j%4===0){
-              that.tables[ct] = [];
+            var tmparr = [];
+            for(var i=0;i<that.nbJoueurs;i++){
+              tmparr.push(i+1);
             }
-            that.tables[ct].push(that.tableau[j]);
+            tmparr = shuffleArray(tmparr);
+
+            var tables = [];
+            for(var j=0;j<tmparr.length;j++){
+              var ct = Math.floor(j/4);
+              if(j%4===0){
+                tables[ct] = [];
+              }
+              tables[ct].push(tmparr[j]);
+            }
+            that.tours.push(tables)
           }
 
       }
